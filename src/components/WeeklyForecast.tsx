@@ -20,7 +20,7 @@ const WeeklyForecast = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-white text-center mb-8">
+      <h2 className="text-3xl font-bold text-white/90 text-center mb-8">
         7-Day Forecast
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4 max-w-7xl mx-auto">
@@ -29,15 +29,15 @@ const WeeklyForecast = () => {
             key={index}
             className="glass-card rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl"
           >
-            <p className="text-white font-semibold text-center mb-4">
+            <p className="text-white/85 font-semibold text-center mb-4">
               {day.day}
             </p>
-            <div className="flex justify-center mb-4 text-white/80">
+            <div className="flex justify-center mb-4 text-white/70">
               {day.icon}
             </div>
-            <div className="flex justify-center gap-2 text-white">
+            <div className="flex justify-center gap-2 text-white/90">
               <span className="font-bold text-lg">{day.high}°</span>
-              <span className="text-white/60 text-lg">{day.low}°</span>
+              <span className="text-white/50 text-lg">{day.low}°</span>
             </div>
           </div>
         ))}

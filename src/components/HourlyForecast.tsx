@@ -23,7 +23,7 @@ const HourlyForecast = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-white text-center mb-8">
+      <h2 className="text-3xl font-bold text-white/90 text-center mb-8">
         Hourly Forecast
       </h2>
       <ScrollArea className="w-full whitespace-nowrap rounded-2xl">
@@ -33,13 +33,13 @@ const HourlyForecast = () => {
               key={index}
               className="glass-card rounded-2xl p-6 min-w-[120px] hover:scale-105 transition-all duration-300 hover:shadow-xl"
             >
-              <p className="text-white/80 text-sm font-medium text-center mb-3">
+              <p className="text-white/70 text-sm font-medium text-center mb-3">
                 {hour.time}
               </p>
-              <div className="flex justify-center mb-3 text-white/80">
+              <div className="flex justify-center mb-3 text-white/70">
                 {hour.icon}
               </div>
-              <p className="text-white text-2xl font-bold text-center">
+              <p className="text-white/90 text-2xl font-bold text-center">
                 {hour.temp}°
               </p>
             </div>
