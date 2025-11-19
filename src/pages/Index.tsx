@@ -6,18 +6,21 @@ import WeatherDetails from "@/components/WeatherDetails";
 import HourlyForecast from "@/components/HourlyForecast";
 import WeeklyForecast from "@/components/WeeklyForecast";
 import Footer from "@/components/Footer";
+import { useWeather } from "@/hooks/useWeather";
 
 const Index = () => {
+  const { weather, loading, fetchWeather } = useWeather("VIT Bhopal");
+
   return (
     <div className="min-h-screen relative">
       <AnimatedBackground />
       <Header />
       <main>
-        <WeatherHero />
-        <SearchBar />
-        <WeatherDetails />
-        <HourlyForecast />
-        <WeeklyForecast />
+        <WeatherHero weather={weather} loading={loading} />
+        <SearchBar onSearch={fetchWeather} />
+        <WeatherDetails weather={weather} />
+        <HourlyForecast weather={weather} />
+        <WeeklyForecast weather={weather} />
       </main>
       <Footer />
     </div>

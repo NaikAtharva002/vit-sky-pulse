@@ -1,22 +1,21 @@
-import { Cloud, CloudRain, Sun } from "lucide-react";
+import { WeatherData } from "@/hooks/useWeather";
 
-interface DayData {
-  day: string;
-  icon: React.ReactNode;
-  high: number;
-  low: number;
+const getWeatherIcon = (code: number) => {
+  // Weather condition codes from WeatherAPI
+  if (code === 1000) return "☀️"; // Sunny
+  if ([1003, 1006, 1009].includes(code)) return "☁️"; // Cloudy
+  if ([1063, 1180, 1183, 1186, 1189, 1192, 1195, 1240, 1243, 1246].includes(code)) return "🌧️"; // Rain
+  if ([1066, 1114, 1210, 1213, 1216, 1219, 1222, 1225, 1255, 1258].includes(code)) return "❄️"; // Snow
+  if ([1087, 1273, 1276, 1279, 1282].includes(code)) return "⛈️"; // Thunder
+  return "🌤️"; // Partly cloudy default
+};
+
+interface WeeklyForecastProps {
+  weather: WeatherData | null;
 }
 
-const WeeklyForecast = () => {
-  const days: DayData[] = [
-    { day: "Monday", icon: <Sun className="w-8 h-8" />, high: 32, low: 22 },
-    { day: "Tuesday", icon: <Cloud className="w-8 h-8" />, high: 30, low: 21 },
-    { day: "Wednesday", icon: <CloudRain className="w-8 h-8" />, high: 27, low: 20 },
-    { day: "Thursday", icon: <Cloud className="w-8 h-8" />, high: 29, low: 21 },
-    { day: "Friday", icon: <Sun className="w-8 h-8" />, high: 31, low: 23 },
-    { day: "Saturday", icon: <Sun className="w-8 h-8" />, high: 33, low: 24 },
-    { day: "Sunday", icon: <Cloud className="w-8 h-8" />, high: 30, low: 22 },
-  ];
+const WeeklyForecast = ({ weather }: WeeklyForecastProps) => {
+  if (!weather) return null;
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -24,23 +23,28 @@ const WeeklyForecast = () => {
         7-Day Forecast
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4 max-w-7xl mx-auto">
-        {days.map((day, index) => (
-          <div
-            key={index}
-            className="glass-card rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl"
-          >
-            <p className="text-white/85 font-semibold text-center mb-4">
-              {day.day}
-            </p>
-            <div className="flex justify-center mb-4 text-white/70">
-              {day.icon}
+        {weather.forecast.forecastday.map((day, index) => {
+          const date = new Date(day.date);
+          const dayName = index === 0 ? "Today" : date.toLocaleDateString("en-US", { weekday: "long" });
+          
+          return (
+            <div
+              key={index}
+              className="glass-card rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl"
+            >
+              <p className="text-white/85 font-semibold text-center mb-4">
+                {dayName}
+              </p>
+              <div className="flex justify-center mb-4 text-4xl">
+                {getWeatherIcon(day.day.condition.code)}
+              </div>
+              <div className="flex justify-center gap-2 text-white/90">
+                <span className="font-bold text-lg">{Math.round(day.day.maxtemp_c)}°</span>
+                <span className="text-white/50 text-lg">{Math.round(day.day.mintemp_c)}°</span>
+              </div>
             </div>
-            <div className="flex justify-center gap-2 text-white/90">
-              <span className="font-bold text-lg">{day.high}°</span>
-              <span className="text-white/50 text-lg">{day.low}°</span>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

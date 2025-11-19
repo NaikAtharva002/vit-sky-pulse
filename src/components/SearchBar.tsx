@@ -3,13 +3,18 @@ import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onSearch: (city: string) => void;
+}
+
+const SearchBar = ({ onSearch }: SearchBarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement search functionality with WeatherAPI
-    console.log("Searching for:", searchQuery);
+    if (searchQuery.trim()) {
+      onSearch(searchQuery.trim());
+    }
   };
 
   return (
