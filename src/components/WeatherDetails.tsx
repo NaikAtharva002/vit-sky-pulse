@@ -1,4 +1,5 @@
 import { Droplets, Wind, Gauge, Eye, Sun, Sunrise, Sunset } from "lucide-react";
+import { WeatherData } from "@/hooks/useWeather";
 
 interface DetailCardProps {
   icon: React.ReactNode;
@@ -20,14 +21,23 @@ const DetailCard = ({ icon, label, value }: DetailCardProps) => (
   </div>
 );
 
-const WeatherDetails = () => {
+interface WeatherDetailsProps {
+  weather: WeatherData | null;
+}
+
+const WeatherDetails = ({ weather }: WeatherDetailsProps) => {
+  if (!weather) return null;
+
+  const sunrise = weather.forecast.forecastday[0]?.astro.sunrise || "N/A";
+  const sunset = weather.forecast.forecastday[0]?.astro.sunset || "N/A";
+
   const details = [
-    { icon: <Droplets className="w-8 h-8" />, label: "Humidity", value: "65%" },
-    { icon: <Wind className="w-8 h-8" />, label: "Wind Speed", value: "12 km/h" },
-    { icon: <Gauge className="w-8 h-8" />, label: "Pressure", value: "1013 hPa" },
-    { icon: <Eye className="w-8 h-8" />, label: "Visibility", value: "10 km" },
-    { icon: <Sun className="w-8 h-8" />, label: "UV Index", value: "5" },
-    { icon: <Sunrise className="w-8 h-8" />, label: "Sunrise", value: "6:24 AM" },
+    { icon: <Droplets className="w-8 h-8" />, label: "Humidity", value: `${weather.current.humidity}%` },
+    { icon: <Wind className="w-8 h-8" />, label: "Wind Speed", value: `${weather.current.wind_kph} km/h` },
+    { icon: <Gauge className="w-8 h-8" />, label: "Pressure", value: `${weather.current.pressure_mb} hPa` },
+    { icon: <Eye className="w-8 h-8" />, label: "Visibility", value: `${weather.current.vis_km} km` },
+    { icon: <Sun className="w-8 h-8" />, label: "UV Index", value: `${weather.current.uv}` },
+    { icon: <Sunrise className="w-8 h-8" />, label: "Sunrise", value: sunrise },
   ];
 
   return (
