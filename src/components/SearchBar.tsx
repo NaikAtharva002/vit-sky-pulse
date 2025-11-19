@@ -21,7 +21,7 @@ const SearchBar = () => {
             placeholder="Search for any city..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 border-0 bg-transparent text-white placeholder:text-white/50 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg"
+            className="flex-1 border-0 bg-transparent text-white/90 placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg"
           />
           <Button
             type="submit"

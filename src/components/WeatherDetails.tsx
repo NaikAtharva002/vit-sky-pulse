@@ -9,12 +9,12 @@ interface DetailCardProps {
 const DetailCard = ({ icon, label, value }: DetailCardProps) => (
   <div className="glass-card rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl group">
     <div className="flex items-start gap-4">
-      <div className="text-white/80 group-hover:text-white transition-colors">
+      <div className="text-white/70 group-hover:text-white/90 transition-colors">
         {icon}
       </div>
       <div className="flex-1">
-        <p className="text-white/60 text-sm mb-1">{label}</p>
-        <p className="text-white text-2xl font-bold">{value}</p>
+        <p className="text-white/50 text-sm mb-1">{label}</p>
+        <p className="text-white/90 text-2xl font-bold">{value}</p>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ const WeatherDetails = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-white text-center mb-8">
+      <h2 className="text-3xl font-bold text-white/90 text-center mb-8">
         Weather Details
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">

@@ -10,7 +10,7 @@ All colors MUST be HSL.
   :root {
     /* Base colors */
     --background: 210 100% 97%;
-    --foreground: 222 47% 11%;
+    --foreground: 220 15% 25%;
 
     /* Weather-themed colors */
     --sky-blue: 212 100% 48%;
