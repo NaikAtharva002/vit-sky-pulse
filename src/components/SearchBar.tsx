@@ -26,12 +26,12 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
             placeholder="Search for any city..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 border-0 bg-transparent text-white/90 placeholder:text-white/40 focus-visible:ring-0 focus-visible:ring-offset-0 text-lg"
+            className="flex-1 border-0 bg-transparent text-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 text-lg font-medium"
           />
           <Button
             type="submit"
             size="lg"
-            className="bg-weather-vit hover:bg-weather-vit/90 text-white rounded-xl px-6 transition-all duration-300 hover:scale-105"
+            className="bg-weather-vit hover:bg-weather-vit/90 text-white rounded-xl px-6 transition-all duration-300 hover:scale-105 font-semibold"
           >
             <Search className="w-5 h-5" />
           </Button>
