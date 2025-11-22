@@ -19,7 +19,7 @@ const WeeklyForecast = ({ weather }: WeeklyForecastProps) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-white/90 text-center mb-8">
+      <h2 className="text-3xl font-bold text-foreground text-center mb-8" style={{ textShadow: '0px 1px 4px rgba(31, 41, 55, 0.1)' }}>
         7-Day Forecast
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4 max-w-7xl mx-auto">
@@ -32,15 +32,15 @@ const WeeklyForecast = ({ weather }: WeeklyForecastProps) => {
               key={index}
               className="glass-card rounded-2xl p-6 hover:scale-105 transition-all duration-300 hover:shadow-xl"
             >
-              <p className="text-white/85 font-semibold text-center mb-4">
+              <p className="text-foreground font-bold text-center mb-4">
                 {dayName}
               </p>
               <div className="flex justify-center mb-4 text-4xl">
                 {getWeatherIcon(day.day.condition.code)}
               </div>
-              <div className="flex justify-center gap-2 text-white/90">
-                <span className="font-bold text-lg">{Math.round(day.day.maxtemp_c)}°</span>
-                <span className="text-white/50 text-lg">{Math.round(day.day.mintemp_c)}°</span>
+              <div className="flex justify-center gap-2 text-foreground">
+                <span className="font-bold text-lg" style={{ textShadow: '0px 1px 3px rgba(31, 41, 55, 0.1)' }}>{Math.round(day.day.maxtemp_c)}°</span>
+                <span className="text-muted-foreground text-lg font-medium">{Math.round(day.day.mintemp_c)}°</span>
               </div>
             </div>
           );

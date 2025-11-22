@@ -25,7 +25,7 @@ const HourlyForecast = ({ weather }: HourlyForecastProps) => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-white/90 text-center mb-8">
+      <h2 className="text-3xl font-bold text-foreground text-center mb-8" style={{ textShadow: '0px 1px 4px rgba(31, 41, 55, 0.1)' }}>
         Hourly Forecast
       </h2>
       <ScrollArea className="w-full whitespace-nowrap rounded-2xl">
@@ -39,13 +39,13 @@ const HourlyForecast = ({ weather }: HourlyForecastProps) => {
                 key={index}
                 className="glass-card rounded-2xl p-6 min-w-[120px] hover:scale-105 transition-all duration-300 hover:shadow-xl"
               >
-                <p className="text-white/70 text-sm font-medium text-center mb-3">
+                <p className="text-muted-foreground text-sm font-semibold text-center mb-3">
                   {displayTime}
                 </p>
                 <div className="flex justify-center mb-3 text-4xl">
                   {getWeatherIcon(hour.condition.code)}
                 </div>
-                <p className="text-white/90 text-2xl font-bold text-center">
+                <p className="text-foreground text-2xl font-bold text-center" style={{ textShadow: '0px 1px 3px rgba(31, 41, 55, 0.1)' }}>
                   {Math.round(hour.temp_c)}°
                 </p>
               </div>
